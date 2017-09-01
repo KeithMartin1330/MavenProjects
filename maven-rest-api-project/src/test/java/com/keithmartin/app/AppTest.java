@@ -1,5 +1,11 @@
 package com.keithmartin.app;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
+import com.keithmartin.model.Player;
+import com.keithmartin.restservice.RestCalls;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -30,9 +36,16 @@ public class AppTest
 
     /**
      * Rigourous Test :-)
+     * @throws IOException 
      */
-    public void testApp()
-    {
-        assertTrue( true );
+    public void testCallContainsPlayers() throws IOException
+    {   	
+    	ArrayList<Player> manchesterUnited = new RestCalls().getLatestSquad();	
+		ArrayList<String> a = new ArrayList<String>();	
+		for(Player p :manchesterUnited) {
+			a.add(p.getName());
+			
+		}
+       assertTrue( a.contains("David de Gea") );
     }
 }
